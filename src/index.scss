@@ -1,14 +1,4 @@
-html,
-body,
-#root {
-    height: 100%;
-    margin: 0;
-    padding: 0;
-}
+$primary: SeaGreen;
+$body-bg: Honeydew;
 
-
-$color: steelblue;
-
-.my-flix {
-    color: $color;
-}
+@import '~bootstrap/scss/bootstrap.scss';

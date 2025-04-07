@@ -3,9 +3,9 @@ import { MovieCard } from "../movie-card/movie-card";
 import { MovieView } from "../movie-view/movie-view";
 import { LoginView } from "../login-view/login-view";
 import { SignupView } from "../signup-view/signup-view";
+import { Container, Row, Col, Button } from "react-bootstrap";
 
 export const MainView = () => {
-    // 🧠 Get saved login from localStorage on first load
     const storedUser = JSON.parse(localStorage.getItem("user"));
     const storedToken = localStorage.getItem("token");
 
@@ -13,9 +13,8 @@ export const MainView = () => {
     const [token, setToken] = useState(storedToken ? storedToken : null);
     const [movies, setMovies] = useState([]);
     const [selectedMovie, setSelectedMovie] = useState(null);
-    const [activeTab, setActiveTab] = useState("login"); // 'login' or 'signup'
+    const [activeTab, setActiveTab] = useState("login");
 
-    // 🎬 Fetch movies when token is available (after login)
     useEffect(() => {
         if (!token) return;
 
@@ -23,62 +22,42 @@ export const MainView = () => {
             headers: { Authorization: `Bearer ${token}` }
         })
             .then((response) => response.json())
-            .then((data) => {
-                setMovies(data);
-            })
+            .then((data) => setMovies(data))
             .catch((err) => console.error("Error fetching movies:", err));
     }, [token]);
-
 
     if (!user) {
         return (
             <div
                 style={{
                     minHeight: "100vh",
-                    margin: 0,
-                    padding: 0,
-                    backgroundImage: `url("https://wallpaperaccess.com/full/317501.jpg")`,
+                    backgroundImage: "url('https://wallpaperaccess.com/full/317501.jpg')",
                     backgroundSize: "cover",
                     backgroundPosition: "center",
                     backgroundRepeat: "no-repeat",
                     display: "flex",
                     alignItems: "center",
-                    justifyContent: "center"
+                    justifyContent: "center",
+                    padding: "30px",
+
                 }}
             >
-                <div style={{ display: "flex", flexDirection: "column", alignItems: "center" }}>
-                    {/* Tabs */}
-                    <div style={{ marginBottom: "20px" }}>
-                        <button
+                <div className="text-center">
+                    <div className="mb-4">
+                        <Button
+                            variant={activeTab === "login" ? "success" : "secondary"}
                             onClick={() => setActiveTab("login")}
-                            style={{
-                                padding: "10px 20px",
-                                marginRight: "10px",
-                                backgroundColor: activeTab === "login" ? "#00b894" : "#ccc",
-                                color: "#fff",
-                                border: "none",
-                                borderRadius: "6px",
-                                cursor: "pointer"
-                            }}
+                            className="me-2"
                         >
                             Login
-                        </button>
-                        <button
+                        </Button>
+                        <Button
+                            variant={activeTab === "signup" ? "success" : "secondary"}
                             onClick={() => setActiveTab("signup")}
-                            style={{
-                                padding: "10px 20px",
-                                backgroundColor: activeTab === "signup" ? "#00b894" : "#ccc",
-                                color: "#fff",
-                                border: "none",
-                                borderRadius: "6px",
-                                cursor: "pointer"
-                            }}
                         >
                             Sign Up
-                        </button>
+                        </Button>
                     </div>
-
-                    {/* Login or Signup view */}
                     {activeTab === "login" ? (
                         <LoginView
                             onLoggedIn={(user, token) => {
@@ -96,51 +75,41 @@ export const MainView = () => {
         );
     }
 
-
-
-
-    // 🎥 Show MovieView if a movie is selected
     if (selectedMovie) {
         return (
-            <MovieView
-                movie={selectedMovie}
-                onBackClick={() => setSelectedMovie(null)}
-            />
+
+            <Row className="justify-content-center"> <Col md={8}>
+                <MovieView movie={selectedMovie} onBackClick={() => setSelectedMovie(null)} />
+            </Col> </Row>
         );
     }
 
-    // 🎞️ Main view - grid of movies
     return (
         <>
-            <button
-                onClick={() => {
-                    setUser(null);
-                    setToken(null);
-                    localStorage.clear(); //  
-                }}
-                style={{ margin: "20px" }}
-            >
-                Logout
-            </button>
-
-            <div
-                style={{
-                    display: "grid",
-                    gridTemplateColumns: "repeat(auto-fit, minmax(250px, 1fr))",
-                    gap: "10px",
-                    padding: "40px",
-                    maxWidth: "1200px",
-                    margin: "0 auto"
-                }}
-            >
-                {movies.map((movie) => (
-                    <MovieCard
-                        key={movie._id}
-                        movie={movie}
-                        onMovieClick={(movie) => setSelectedMovie(movie)}
-                    />
-                ))}
+            <div className="d-flex justify-content-end p-3">
+                <Button
+                    variant="outline-danger"
+                    onClick={() => {
+                        setUser(null);
+                        setToken(null);
+                        localStorage.clear();
+                    }}
+                >
+                    Logout
+                </Button>
             </div>
+
+            <Container className="py-4 px-3">
+                <Row className="gx-4 gy-5">
+                    {movies.map((movie) => (
+                        <Col key={movie._id} xs={12} sm={6} md={4} lg={3} className="mb-4 px-3" >
+                            <MovieCard movie={movie} onMovieClick={setSelectedMovie} />
+                        </Col>
+                    ))}
+                </Row>
+            </Container>
+
+
         </>
     );
 };
