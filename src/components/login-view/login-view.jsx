@@ -1,6 +1,8 @@
 import { useState } from "react";
 import Button from "react-bootstrap/Button";
 import Form from "react-bootstrap/Form";
+import { Link } from "react-router-dom";
+
 
 export const LoginView = ({ onLoggedIn }) => {
   const [username, setUsername] = useState("");
@@ -34,19 +36,20 @@ export const LoginView = ({ onLoggedIn }) => {
     >
       <Form
         onSubmit={handleSubmit}
-        className="bg-transparent  text-white p-5 "
-        style={{ width: "300px" }}
+        className="  text-white p-5 "
+        style={{ width: "400px" }}
       >
-        <h2 className="mb-4 text-center">Welcome to myFlix</h2>
+        <h2 className="mb-4 text-center">FUCK ATC</h2>
 
-        <Form.Group controlId="formUsername" className="mb-3 ">
-          <Form.Label>Username</Form.Label>
-          <Form.Control
+        <Form.Group controlId="formUsername" className="mb-3  ">
+          <Form.Label >Username</Form.Label>
+          <Form.Control 
             type="text"
             value={username}
             onChange={(e) => setUsername(e.target.value)}
             required
             placeholder="Enter username"
+              className="custom-dark-input py-3"
           />
         </Form.Group>
 
@@ -58,6 +61,7 @@ export const LoginView = ({ onLoggedIn }) => {
             onChange={(e) => setPassword(e.target.value)}
             required
             placeholder="Enter password"
+            className="custom-dark-input py-3"
           />
         </Form.Group>
 
@@ -65,6 +69,12 @@ export const LoginView = ({ onLoggedIn }) => {
           <Button variant="primary" type="submit">
             Login
           </Button>
+        </div>
+        <div className="text-center mt-3">
+         <span className="text-white">New to myFlix? </span>
+         <Link to="/signup" className="text-warning fw-bold text-decoration-none">
+          Sign up now
+          </Link>
         </div>
       </Form>
     </div>

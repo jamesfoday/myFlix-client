@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import Button from "react-bootstrap/Button";
 import Form from "react-bootstrap/Form";
+import { Link } from "react-router-dom";
 
 export const SignupView = () => {
     const [username, setUsername] = useState("");
@@ -41,8 +42,8 @@ export const SignupView = () => {
         >
             <Form
                 onSubmit={handleSubmit}
-                className="bg-transparent  text-white p-3  "
-                style={{ width: "300px" }}
+                className="text-white p-3  "
+                style={{ width: "400px" }}
             >
                 <h2 className=" text-center">Sign up</h2>
 
@@ -54,6 +55,7 @@ export const SignupView = () => {
                         onChange={(e) => setUsername(e.target.value)}
                         required
                         placeholder="Enter username"
+                        className="custom-dark-input py-3"
                     />
                 </Form.Group>
 
@@ -65,6 +67,7 @@ export const SignupView = () => {
                         onChange={(e) => setPassword(e.target.value)}
                         required
                         placeholder="Enter password"
+                        className="custom-dark-input py-3"
                     />
                 </Form.Group>
 
@@ -76,6 +79,7 @@ export const SignupView = () => {
                         onChange={(e) => setEmail(e.target.value)}
                         required
                         placeholder="Enter email"
+                        className="custom-dark-input py-3"
                     />
                 </Form.Group>
 
@@ -87,6 +91,7 @@ export const SignupView = () => {
                         onChange={(e) => setBirthday(e.target.value)}
                         required
                         placeholder="D.O.B"
+                        className="custom-dark-input py-3"
                     />
                 </Form.Group>
 
@@ -94,6 +99,12 @@ export const SignupView = () => {
                     <Button variant="primary" type="submit">
                         signup
                     </Button>
+                </div>
+                <div className="text-center mt-3">
+                    <span className="text-white">Already have an account? </span>
+                    <Link to="/login" className="text-warning fw-bold text-decoration-none">
+                        Login
+                    </Link>
                 </div>
             </Form>
         </div>
