@@ -35447,6 +35447,6 @@ $RefreshReg$(_c, "FavoriteMoviesView");
   globalThis.$RefreshReg$ = prevRefreshReg;
   globalThis.$RefreshSig$ = prevRefreshSig;
 }
-},{"react/jsx-dev-runtime":"dVPUn","react":"jMk1U","prop-types":"GNqOQ","react-bootstrap":"ctEhb","@parcel/transformer-js/src/esmodule-helpers.js":"cvlpf","@parcel/transformer-react-refresh-wrap/lib/helpers/helpers.js":"a1Cbe","react-router-dom":"61z4w"}],"lJZlQ":[function() {},{}],"87yWV":[function() {},{}]},["8YY3s","gYcKb"], "gYcKb", "parcelRequiree977", null, null, "http://localhost:1234")
+},{"react/jsx-dev-runtime":"dVPUn","react":"jMk1U","react-bootstrap":"ctEhb","prop-types":"GNqOQ","react-router-dom":"61z4w","@parcel/transformer-js/src/esmodule-helpers.js":"cvlpf","@parcel/transformer-react-refresh-wrap/lib/helpers/helpers.js":"a1Cbe"}],"lJZlQ":[function() {},{}],"87yWV":[function() {},{}]},["8YY3s","gYcKb"], "gYcKb", "parcelRequiree977", null, null, "http://localhost:1234")
 
 //# sourceMappingURL=myFlix-client.ad93b51f.js.map
