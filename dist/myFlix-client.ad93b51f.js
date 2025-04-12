@@ -34393,7 +34393,7 @@ const LoginView = ({ onLoggedIn })=>{
             children: [
                 /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("h2", {
                     className: "mb-4 text-center",
-                    children: "FUCK ATC"
+                    children: "Login"
                 }, void 0, false, {
                     fileName: "src/components/login-view/login-view.jsx",
                     lineNumber: 42,
@@ -35313,20 +35313,43 @@ parcelHelpers.export(exports, "FavoriteMoviesView", ()=>FavoriteMoviesView);
 var _jsxDevRuntime = require("react/jsx-dev-runtime");
 var _react = require("react");
 var _reactDefault = parcelHelpers.interopDefault(_react);
+var _reactBootstrap = require("react-bootstrap");
 var _propTypes = require("prop-types");
 var _propTypesDefault = parcelHelpers.interopDefault(_propTypes);
-var _reactBootstrap = require("react-bootstrap");
+var _reactRouterDom = require("react-router-dom");
+var _s = $RefreshSig$();
 const FavoriteMoviesView = ({ user, movies, onToggleFavorite })=>{
+    _s();
+    const navigate = (0, _reactRouterDom.useNavigate)();
     const favoriteMovies = movies.filter((m)=>user.FavoriteMovies.includes(m._id));
     return /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("div", {
-        className: "p-4 text-white mt-5",
+        className: "p-4 text-dark mt-4",
         children: [
-            /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("h3", {
-                className: "mb-4",
-                children: "Your Favorite Movies"
-            }, void 0, false, {
+            /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("div", {
+                className: "d-flex justify-content-between align-items-center mb-4 mt-4",
+                children: [
+                    /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("h3", {
+                        className: "mt-4",
+                        children: "Your Favorite Movies"
+                    }, void 0, false, {
+                        fileName: "src/components/favorite-movies-view/favorite-movies-view.jsx",
+                        lineNumber: 16,
+                        columnNumber: 17
+                    }, undefined),
+                    /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _reactBootstrap.Button), {
+                        variant: "outline-dark",
+                        size: "sm",
+                        onClick: ()=>navigate("/"),
+                        children: "Movies"
+                    }, void 0, false, {
+                        fileName: "src/components/favorite-movies-view/favorite-movies-view.jsx",
+                        lineNumber: 17,
+                        columnNumber: 17
+                    }, undefined)
+                ]
+            }, void 0, true, {
                 fileName: "src/components/favorite-movies-view/favorite-movies-view.jsx",
-                lineNumber: 12,
+                lineNumber: 15,
                 columnNumber: 13
             }, undefined),
             /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _reactBootstrap.Row), {
@@ -35334,7 +35357,7 @@ const FavoriteMoviesView = ({ user, movies, onToggleFavorite })=>{
                     children: "No favorite movies yet."
                 }, void 0, false, {
                     fileName: "src/components/favorite-movies-view/favorite-movies-view.jsx",
-                    lineNumber: 15,
+                    lineNumber: 24,
                     columnNumber: 21
                 }, undefined) : favoriteMovies.map((movie)=>/*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _reactBootstrap.Col), {
                         xs: 12,
@@ -35343,7 +35366,7 @@ const FavoriteMoviesView = ({ user, movies, onToggleFavorite })=>{
                         lg: 3,
                         className: "mb-4",
                         children: /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _reactBootstrap.Card), {
-                            className: "h-100 shadow",
+                            className: "h-100",
                             children: [
                                 /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _reactBootstrap.Card).Img, {
                                     variant: "top",
@@ -35354,7 +35377,7 @@ const FavoriteMoviesView = ({ user, movies, onToggleFavorite })=>{
                                     }
                                 }, void 0, false, {
                                     fileName: "src/components/favorite-movies-view/favorite-movies-view.jsx",
-                                    lineNumber: 20,
+                                    lineNumber: 29,
                                     columnNumber: 33
                                 }, undefined),
                                 /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _reactBootstrap.Card).Body, {
@@ -35363,7 +35386,7 @@ const FavoriteMoviesView = ({ user, movies, onToggleFavorite })=>{
                                             children: movie.Title
                                         }, void 0, false, {
                                             fileName: "src/components/favorite-movies-view/favorite-movies-view.jsx",
-                                            lineNumber: 26,
+                                            lineNumber: 35,
                                             columnNumber: 37
                                         }, undefined),
                                         /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _reactBootstrap.Button), {
@@ -35373,38 +35396,43 @@ const FavoriteMoviesView = ({ user, movies, onToggleFavorite })=>{
                                             children: "Remove"
                                         }, void 0, false, {
                                             fileName: "src/components/favorite-movies-view/favorite-movies-view.jsx",
-                                            lineNumber: 27,
+                                            lineNumber: 36,
                                             columnNumber: 37
                                         }, undefined)
                                     ]
                                 }, void 0, true, {
                                     fileName: "src/components/favorite-movies-view/favorite-movies-view.jsx",
-                                    lineNumber: 25,
+                                    lineNumber: 34,
                                     columnNumber: 33
                                 }, undefined)
                             ]
                         }, void 0, true, {
                             fileName: "src/components/favorite-movies-view/favorite-movies-view.jsx",
-                            lineNumber: 19,
+                            lineNumber: 28,
                             columnNumber: 29
                         }, undefined)
                     }, movie._id, false, {
                         fileName: "src/components/favorite-movies-view/favorite-movies-view.jsx",
-                        lineNumber: 18,
+                        lineNumber: 27,
                         columnNumber: 25
                     }, undefined))
             }, void 0, false, {
                 fileName: "src/components/favorite-movies-view/favorite-movies-view.jsx",
-                lineNumber: 13,
+                lineNumber: 22,
                 columnNumber: 13
             }, undefined)
         ]
     }, void 0, true, {
         fileName: "src/components/favorite-movies-view/favorite-movies-view.jsx",
-        lineNumber: 11,
+        lineNumber: 14,
         columnNumber: 9
     }, undefined);
 };
+_s(FavoriteMoviesView, "CzcTeTziyjMsSrAVmHuCCb6+Bfg=", false, function() {
+    return [
+        (0, _reactRouterDom.useNavigate)
+    ];
+});
 _c = FavoriteMoviesView;
 FavoriteMoviesView.propTypes = {
     user: (0, _propTypesDefault.default).object.isRequired,
@@ -35419,6 +35447,6 @@ $RefreshReg$(_c, "FavoriteMoviesView");
   globalThis.$RefreshReg$ = prevRefreshReg;
   globalThis.$RefreshSig$ = prevRefreshSig;
 }
-},{"react/jsx-dev-runtime":"dVPUn","react":"jMk1U","react-bootstrap":"ctEhb","prop-types":"GNqOQ","@parcel/transformer-js/src/esmodule-helpers.js":"cvlpf","@parcel/transformer-react-refresh-wrap/lib/helpers/helpers.js":"a1Cbe"}],"lJZlQ":[function() {},{}],"87yWV":[function() {},{}]},["8YY3s","gYcKb"], "gYcKb", "parcelRequiree977", null, null, "http://localhost:1234")
+},{"react/jsx-dev-runtime":"dVPUn","react":"jMk1U","prop-types":"GNqOQ","react-bootstrap":"ctEhb","@parcel/transformer-js/src/esmodule-helpers.js":"cvlpf","@parcel/transformer-react-refresh-wrap/lib/helpers/helpers.js":"a1Cbe","react-router-dom":"61z4w"}],"lJZlQ":[function() {},{}],"87yWV":[function() {},{}]},["8YY3s","gYcKb"], "gYcKb", "parcelRequiree977", null, null, "http://localhost:1234")
 
 //# sourceMappingURL=myFlix-client.ad93b51f.js.map

@@ -39,7 +39,7 @@ export const LoginView = ({ onLoggedIn }) => {
         className="  text-white p-5 "
         style={{ width: "400px" }}
       >
-        <h2 className="mb-4 text-center">FUCK ATC</h2>
+        <h2 className="mb-4 text-center">Login</h2>
 
         <Form.Group controlId="formUsername" className="mb-3  ">
           <Form.Label >Username</Form.Label>
