@@ -43,7 +43,7 @@ export const SignupView = () => {
             <Form
                 onSubmit={handleSubmit}
                 className="text-white p-3  "
-                style={{ width: "400px" }}
+                style={{ width: "320px" }}
             >
                 <h2 className=" text-center">Sign up</h2>
 

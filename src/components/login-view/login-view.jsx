@@ -37,7 +37,7 @@ export const LoginView = ({ onLoggedIn }) => {
       <Form
         onSubmit={handleSubmit}
         className="  text-white p-5 "
-        style={{ width: "400px" }}
+        style={{ width: "320px" }}
       >
         <h2 className="mb-4 text-center">Login</h2>
 
