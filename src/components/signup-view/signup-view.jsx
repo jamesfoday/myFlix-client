@@ -1,4 +1,7 @@
 import React, { useState } from "react";
+import Button from "react-bootstrap/Button";
+import Form from "react-bootstrap/Form";
+import { Link } from "react-router-dom";
 
 export const SignupView = () => {
     const [username, setUsername] = useState("");
@@ -33,101 +36,125 @@ export const SignupView = () => {
     };
 
     return (
-        <div style={styles.background}>
-            <div style={styles.overlay}>
-                <form onSubmit={handleSubmit} style={styles.form}>
-                    <h2 style={styles.title}> Create an account</h2>
+        <div
+            className="d-flex justify-content-center align-items-center"
+            style={{ height: "auto", backgroundColor: "rgba(0, 0, 0, 0.5)", borderRadius: "10px", boxShadow: "0 4px 20px rgba(0, 0, 0, 0.3)", padding: "10px" }}
+        >
+            <Form
+                onSubmit={handleSubmit}
+                className="text-white p-3  "
+                style={{ width: "320px" }}
+            >
+                <h2 className=" text-center">Sign up</h2>
 
-                    <input
+                <Form.Group controlId="formUsername" className="px-4 mb-1" >
+                    <Form.Label>Username</Form.Label>
+                    <Form.Control
                         type="text"
-                        placeholder="Username"
                         value={username}
                         onChange={(e) => setUsername(e.target.value)}
-                        style={styles.input}
                         required
-                        minLength="3"
+                        placeholder="Enter username"
+                        className="custom-dark-input py-3"
                     />
+                </Form.Group>
 
-                    <input
+                <Form.Group controlId="formPassword" className="px-4 mb-1" >
+                    <Form.Label>Password</Form.Label>
+                    <Form.Control
                         type="password"
-                        placeholder="Password"
                         value={password}
                         onChange={(e) => setPassword(e.target.value)}
-                        style={styles.input}
                         required
+                        placeholder="Enter password"
+                        className="custom-dark-input py-3"
                     />
+                </Form.Group>
 
-                    <input
+                <Form.Group controlId="formemail" className="px-4 mb-1" >
+                    <Form.Label>Email</Form.Label>
+                    <Form.Control
                         type="email"
-                        placeholder="Email"
                         value={email}
                         onChange={(e) => setEmail(e.target.value)}
-                        style={styles.input}
                         required
+                        placeholder="Enter email"
+                        className="custom-dark-input py-3"
                     />
+                </Form.Group>
 
-                    <input
+                <Form.Group controlId="formdate" className="px-4 mb-3">
+                    <Form.Label>Birthday</Form.Label>
+                    <Form.Control
                         type="date"
                         value={birthday}
                         onChange={(e) => setBirthday(e.target.value)}
-                        style={styles.input}
                         required
+                        placeholder="D.O.B"
+                        className="custom-dark-input py-3"
                     />
+                </Form.Group>
 
-                    <button type="submit" style={styles.button} >Sign Up</button>
-                </form>
-            </div>
+                <div className="d-grid px-4">
+                    <Button variant="primary" type="submit">
+                        signup
+                    </Button>
+                </div>
+                <div className="text-center mt-3">
+                    <span className="text-white">Already have an account? </span>
+                    <Link to="/login" className="text-warning fw-bold text-decoration-none">
+                        Login
+                    </Link>
+                </div>
+            </Form>
         </div>
-
-
-
     );
 };
 
 // 🎨 Styles
-const styles = {
-    // background: {
-    //     height: "100vh",
-    //     width: "100%",
-    //     // backgroundImage: `url("https://wallpaperaccess.com/full/317501.jpg")`, 
-    //     backgroundSize: "cover",
-    //     backgroundPosition: "center",
-    //     display: "flex",
-    //     alignItems: "center",
-    //     justifyContent: "center"
-    // },
-    overlay: {
-        backgroundColor: "rgba(0, 0, 0, 0.5)",
-        padding: "60px",
-        borderRadius: "10px",
-        boxShadow: "0 4px 20px rgba(0, 0, 0, 0.3)"
-    },
-    form: {
-        display: "flex",
-        flexDirection: "column",
-        alignItems: "center",
-        gap: "15px"
-    },
-    title: {
-        color: "#fff",
-        fontSize: "24px",
-        marginBottom: "10px"
-    },
-    input: {
-        width: "220px",
-        padding: "10px",
-        borderRadius: "6px",
-        border: "none",
-        outline: "none"
-    },
-    button: {
-        padding: "10px 20px",
-        borderRadius: "6px",
-        border: "none",
-        backgroundColor: "#00b894",
-        color: "#fff",
-        fontWeight: "bold",
-        cursor: "pointer"
-    }
-};
+// const styles = {
+//     // background: {
+//     //     height: "100vh",
+//     //     width: "100%",
+//     //     // backgroundImage: `url("https://wallpaperaccess.com/full/317501.jpg")`,
+//     //     backgroundSize: "cover",
+//     //     backgroundPosition: "center",
+//     //     display: "flex",
+//     //     alignItems: "center",
+//     //     justifyContent: "center"
+//     // },
+//     overlay: {
+//         backgroundColor: "rgba(0, 0, 0, 0.5)",
+//         padding: "60px",
+//         borderRadius: "10px",
+//         boxShadow: "0 4px 20px rgba(0, 0, 0, 0.3)"
+//     },
+//     form: {
+//         display: "flex",
+//         flexDirection: "column",
+//         alignItems: "center",
+//         gap: "15px"
+//     },
+//     title: {
+//         color: "#fff",
+//         fontSize: "24px",
+//         marginBottom: "10px"
+//     },
+//     input: {
+//         width: "220px",
+//         padding: "10px",
+//         borderRadius: "6px",
+//         border: "none",
+//         outline: "none"
+//     },
+//     button: {
+//         padding: "10px 20px",
+//         borderRadius: "6px",
+//         border: "none",
+//         backgroundColor: "#00b894",
+//         color: "#fff",
+//         fontWeight: "bold",
+//         cursor: "pointer"
+//     }
+// };
 

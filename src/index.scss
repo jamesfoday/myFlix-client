@@ -1,14 +1,51 @@
-html,
 body,
+html,
 #root {
+    margin: 0;
+    padding: 0;
+    width: 100%;
     height: 100%;
+    overflow-x: hidden;
+}
+
+$primary: SeaGreen;
+$body-bg: honeydew;
+
+@import '~bootstrap/scss/bootstrap.scss';
+
+
+.logo-image {
+    width: 120px;
+    height: 40px;
+    background-image: url('../public/assets/myfllixlogo3.png');
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: center;
+    display: inline-block;
+}
+
+.bodylog {
+    background-image: url('../public/assets/chat.png');
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    min-height: 100vh;
+    width: 100%;
     margin: 0;
     padding: 0;
 }
 
-
-$color: steelblue;
-
-.my-flix {
-    color: $color;
+.form-control.custom-dark-input {
+    background-color: rgba(12, 12, 12, 0.4) !important;
+    color: #fff !important;
+    border: 0.5px solid #ffffff !important;
+    backdrop-filter: blur(4px);
+    box-shadow: none;
+    outline: none;
 }
+
+.form-control.custom-dark-input::placeholder {
+    color: rgba(255, 255, 255, 0.6);
+}
+
+//

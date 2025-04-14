@@ -1,3 +1,23 @@
 node_modules
 .cache
 .parcel-cache
+
+# Ignore build output
+dist/
+
+
+
+# System files
+.DS_Store
+Thumbs.db
+
+# Logs
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
+# Parcel cache (if you use Parcel)
+.cache/
+
+# Environment variables
+.env
