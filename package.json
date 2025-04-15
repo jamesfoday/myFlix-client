@@ -4,7 +4,7 @@
   "description": "A React project using Parcel, Bootstrap, and Sass",
   "scripts": {
     "start": "parcel index.html",
-    "build": "parcel build src/index.html --public-url ./"
+    "build": "parcel build index.html"
   },
   "keywords": [
     "react",
