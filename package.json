@@ -3,8 +3,8 @@
   "version": "1.0.0",
   "description": "A React project using Parcel, Bootstrap, and Sass",
   "scripts": {
-    "start": "parcel index.html",
-    "build": "parcel build index.html"
+    "start": "parcel src/index.html",
+    "build": "parcel build src/index.html"
   },
   "keywords": [
     "react",
@@ -25,8 +25,8 @@
     "sass": "^1.86.3"
   },
   "devDependencies": {
-    "@parcel/transformer-sass": "^2.8.3",
-    "parcel": "^2.8.3",
+    "@parcel/transformer-sass": "2.7.0",
+    "parcel": "2.7.0",
     "process": "^0.11.10"
   },
   "browserslist": [
