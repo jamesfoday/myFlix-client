@@ -16,8 +16,13 @@ export const MainView = () => {
     const [user, setUser] = useState(storedUser || null);
     const [token, setToken] = useState(storedToken || null);
     const [movies, setMovies] = useState([]);
+    const [searchTerm, setSearchTerm] = useState("");
 
     const navigate = useNavigate();
+
+    const filteredMovies = movies.filter((movie) =>
+        movie.Title.toLowerCase().includes(searchTerm.toLowerCase())
+    );
 
     useEffect(() => {
         if (!token) return;
@@ -61,13 +66,21 @@ export const MainView = () => {
                 localStorage.setItem("user", JSON.stringify(updatedUser));
                 setUser(updatedUser);
             })
-            .catch((err) => console.error("Favorite toggle failed:", err));
+            .catch((err) => {
+                console.error("Favorite toggle failed:", err);
+
+            });
     };
 
     if (!user) {
         return (
             <div className="bodylog d-flex align-items-center justify-content-center p-4 text-white">
-                <NavigationBar user={null} onLoggedOut={handleLogout} isGuest={true} />
+                <NavigationBar
+                    user={null}
+                    onLoggedOut={handleLogout}
+                    searchTerm={searchTerm}
+                    onSearchChange={setSearchTerm}
+                />
                 <Routes>
                     <Route
                         path="/login"
@@ -92,45 +105,57 @@ export const MainView = () => {
 
     return (
         <Container fluid className="p-0">
-            <NavigationBar user={user} onLoggedOut={handleLogout} isGuest={false} />
+            <NavigationBar
+                user={user}
+                onLoggedOut={handleLogout}
+                searchTerm={searchTerm}
+                onSearchChange={setSearchTerm}
+            />
+
             <Routes>
                 <Route
                     path="/"
                     element={
-                        <Row className="gx-4 gy-4 px-4 py-4 mx-0 mt-5 justify-content-center">
-                            {movies.map((movie) => (
-                                <Col
-                                    key={movie._id}
-                                    xs={12}
-                                    sm={6}
-                                    md={4}
-                                    lg={3}
-                                    className="d-flex justify-content-center"
-                                >
-                                    <MovieCard
-                                        movie={movie}
-                                        onMovieClick={(m) => navigate(`/movies/${m._id}`)}
-                                        onToggleFavorite={handleToggleFavorite}
-                                        isFavorite={user.FavoriteMovies.includes(movie._id)}
-                                    />
-                                </Col>
-                            ))}
+                        <Row className="gx-4 gy-4 px-4 py-4 mx-0 mt-5 pt-5 justify-content-center">
+                            {filteredMovies.length === 0 ? (
+                                <p className="text-center text-muted mt-5 mb-5">
+                                    No movies found matching "{searchTerm}"
+                                </p>
+                            ) : (
+                                filteredMovies.map((movie) => (
+                                    <Col
+                                        key={movie._id}
+                                        xs={12}
+                                        sm={6}
+                                        md={4}
+                                        lg={3}
+                                        className="d-flex justify-content-center"
+                                    >
+                                        <MovieCard
+                                            movie={movie}
+                                            onMovieClick={(m) => navigate(`/movies/${m._id}`)}
+                                            onToggleFavorite={handleToggleFavorite}
+                                            isFavorite={user.FavoriteMovies.includes(movie._id)}
+                                        />
+                                    </Col>
+                                ))
+                            )}
                         </Row>
                     }
                 />
+
                 <Route
                     path="/movies/:movieId"
                     element={
-                        <MovieView
-                            movies={movies}
-                            onBackClick={() => navigate("/")}
-                        />
+                        <MovieView movies={movies} onBackClick={() => navigate("/")} />
                     }
                 />
+
                 <Route
                     path="/profile"
                     element={<ProfileView user={user} movies={movies} />}
                 />
+
                 <Route
                     path="/favorites"
                     element={
@@ -141,6 +166,7 @@ export const MainView = () => {
                         />
                     }
                 />
+
                 <Route path="*" element={<Navigate to="/" replace />} />
             </Routes>
         </Container>

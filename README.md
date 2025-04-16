@@ -1,55 +1,48 @@
-**myFlix**  
-This application is a client-side solution developed using React for the myFlix movie platform, enabling users to access detailed information about movies, directors, and genres.
+# 🎬 myFlix React Client
 
-Setup Instructions
+The **myFlix** app is a client-side web application built using **React**, allowing users to browse, search, and save their favorite movies. Users can create an account, update profile info, and manage their list of favorite films.
 
-1. **Clone the Repository:**
-   
-   
-   cd myFlix-client
-   ```
+## Live Demo
+ [myFlix Live App on Netlify](https://myflix1712.netlify.app)
 
-2. **Install Dependencies:**
- 
-   npm install
-   ```
+##  Project Features
 
-   *(Optional)* If the Parcel build tool is not installed globally, it can be installed by executing:
-   ```bash
-   npm install -g parcel
-   ```
+- Signup/Login with JWT Authentication
+- View a full list of movies
+- Detailed view of individual movies
+- Add or remove favorite movies
+- Update and delete user profile
+- Mobile-responsive layout with React Bootstrap
+- Movie search bar with Netflix-style styling
+- Protected routes using React Router
 
-How to Run the Project
+##  Technologies Used
 
-To initiate the development server utilizing Parcel, please execute the following command:
+- **React** (v19)
+- **React Router**
+- **React Bootstrap**
+- **Parcel** bundler
+- **Bootstrap 5 / SCSS**
+- **MongoDB, Mongoose** (backend)
+- **Express.js / Node.js**
+- **JWT Authentication**
+- **Netlify** (frontend hosting)
+- **Render or Heroku** (API hosting)
 
-parcel src/index.html
-```
+## How to Run
 
-Afterward, open your web browser and navigate to:
-```
-http://localhost:1234
-```
+1. Clone the repo
+2. Install dependencies: `npm install`
+3. Start dev server: `npm start`
+4. Make sure your backend is running at the specified API base URL
 
-You should see a greeting message, "Good morning," displayed in blue. Parcel will automatically rebuild and refresh the page when changes are made, facilitating live reloading.
+## Repo Links
 
- File Structure
+- [Frontend GitHub Repo](https://github.com/jamesfoday/myFlix-client)
+- [Backend GitHub Repo](https://github.com/jamesfoday/movie_api)
 
-```
-myFlix-client/
-├── .gitignore
-├── package.json
-├── README.md
-├── src/
-│   ├── index.html       # Application entry point
-│   ├── index.jsx        # Primary React component
-│   └── index.scss       # Sample SCSS styles
-```
+##  Author & License
 
- Tools Utilized
+Created by **James Foday** during the CareerFoundry Full-Stack Web Development program.
 
-- **React** - A JavaScript library utilized for constructing user interfaces
-- **ReactDOM** - Facilitates interaction between React and the Document Object Model (DOM)
-- **Parcel** - A zero-configuration build tool for efficient bundling, transpiling, and serving of the application
-- **SCSS** - A CSS preprocessor providing cleaner and more flexible styling options
-- **Babel** (as employed by Parcel) - Transpiles JSX and ES6+ into JavaScript that is compatible with web browsers
+MIT License.

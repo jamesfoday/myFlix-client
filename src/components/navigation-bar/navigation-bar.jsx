@@ -1,16 +1,14 @@
 import React, { useState, useEffect, useRef } from "react";
-import { Navbar, Nav, Container, Button } from "react-bootstrap";
+import { Navbar, Nav, Container, Button, Form } from "react-bootstrap";
 import { Link, useLocation } from "react-router-dom";
 
-export const NavigationBar = ({ user, onLoggedOut }) => {
+export const NavigationBar = ({ user, onLoggedOut, searchTerm, onSearchChange }) => {
     const [expanded, setExpanded] = useState(false);
     const navRef = useRef();
     const location = useLocation();
 
     const isLoginPage = location.pathname === "/login";
     const isSignupPage = location.pathname === "/signup";
-
-    const isLoggedOutView = !user && (isLoginPage || isSignupPage);
 
     useEffect(() => {
         const handleClickOutside = (e) => {
@@ -29,24 +27,66 @@ export const NavigationBar = ({ user, onLoggedOut }) => {
             fixed="top"
             expanded={expanded}
             onToggle={() => setExpanded(!expanded)}
-            className={`px-3 ${user ? "bg-dark bg-opacity-90" : "bg-transparent"}`}
+            className={`px-3 py-2 ${user ? "bg-dark bg-opacity-90" : "bg-transparent"}`}
         >
-            <Container fluid className="d-flex justify-content-between align-items-center">
+            <Container fluid className="d-flex align-items-center justify-content-between gap-2 flex-nowrap">
 
-                <Navbar.Brand as={Link} to="/">
+                {/* Logo */}
+                <Navbar.Brand as={Link} to="/" className="me-2 flex-shrink-0">
                     <div className="logo-image" />
                 </Navbar.Brand>
 
-                {/* Hamburger Icon - only for logged-in users */}
+                {/* Search Bar (only for logged-in users) */}
                 {user && (
-                    <Navbar.Toggle className="border-0">
-                        <i className="bi bi-person-circle fs-2 text-white" />
-                    </Navbar.Toggle>
+                    <Form className="flex-grow-1 me-2">
+                        <Form.Control
+                            type="search"
+                            placeholder="Search movies..."
+                            className="netflix-search"
+                            value={searchTerm}
+                            onChange={(e) => onSearchChange(e.target.value)}
+                        />
+                    </Form>
                 )}
 
-                <Navbar.Collapse id="navbar-nav" className="mobile-menu">
+                {/* Right Controls (User icon or login/signup buttons) */}
+                <div className="d-flex align-items-center flex-shrink-0">
+                    {user ? (
+                        <Navbar.Toggle className="border-0 p-1">
+                            <i className="bi bi-person-circle fs-3 text-white" />
+                        </Navbar.Toggle>
+                    ) : (
+                        <>
+                            {isSignupPage && (
+                                <Button
+                                    as={Link}
+                                    to="/login"
+                                    variant="danger"
+                                    className="fw-semibold me-2"
+                                    onClick={() => setExpanded(false)}
+                                >
+                                    Login
+                                </Button>
+                            )}
+                            {isLoginPage && (
+                                <Button
+                                    as={Link}
+                                    to="/signup"
+                                    variant="danger"
+                                    className="fw-semibold"
+                                    onClick={() => setExpanded(false)}
+                                >
+                                    Sign Up
+                                </Button>
+                            )}
+                        </>
+                    )}
+                </div>
+
+                {/* Mobile Dropdown Menu */}
+                <Navbar.Collapse id="navbar-nav" className="mobile-menu mt-2">
                     <Nav className="ms-auto align-items-center text-center">
-                        {user ? (
+                        {user && (
                             <>
                                 <Nav.Link as={Link} to="/" className="text-white" onClick={() => setExpanded(false)}>
                                     Home
@@ -67,31 +107,6 @@ export const NavigationBar = ({ user, onLoggedOut }) => {
                                 >
                                     Logout
                                 </Button>
-                            </>
-                        ) : (
-                            <>
-                                {isSignupPage && (
-                                    <Button
-                                        as={Link}
-                                        to="/login"
-                                        variant="danger"
-                                        className="fw-semibold me-2"
-                                        onClick={() => setExpanded(false)}
-                                    >
-                                        Login
-                                    </Button>
-                                )}
-                                {isLoginPage && (
-                                    <Button
-                                        as={Link}
-                                        to="/signup"
-                                        variant="danger"
-                                        className="fw-semibold"
-                                        onClick={() => setExpanded(false)}
-                                    >
-                                        Sign Up
-                                    </Button>
-                                )}
                             </>
                         )}
                     </Nav>
