@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useRef } from "react";
-import { Navbar, Nav, Container, Button, Form } from "react-bootstrap";
+import { Navbar, Nav, Button, Form } from "react-bootstrap";
 import { Link, useLocation } from "react-router-dom";
 
 export const NavigationBar = ({ user, onLoggedOut, searchTerm, onSearchChange }) => {
@@ -29,31 +29,33 @@ export const NavigationBar = ({ user, onLoggedOut, searchTerm, onSearchChange })
             onToggle={() => setExpanded(!expanded)}
             className={`px-3 py-2 ${user ? "bg-dark bg-opacity-90" : "bg-transparent"}`}
         >
-            <Container fluid className="d-flex align-items-center justify-content-between gap-2 flex-nowrap">
+            <div className="w-100 d-flex align-items-center justify-content-between">
 
-                {/* Logo */}
-                <Navbar.Brand as={Link} to="/" className="me-2 flex-shrink-0">
+                {/* Logo (left) */}
+                <Navbar.Brand as={Link} to="/" className="me-2">
                     <div className="logo-image" />
                 </Navbar.Brand>
 
-                {/* Search Bar (only for logged-in users) */}
+                {/* Search bar (center on desktop, full width on mobile) */}
                 {user && (
-                    <Form className="flex-grow-1 me-2">
-                        <Form.Control
-                            type="search"
-                            placeholder="Search movies..."
-                            className="netflix-search"
-                            value={searchTerm}
-                            onChange={(e) => onSearchChange(e.target.value)}
-                        />
-                    </Form>
+                    <div className="flex-grow-1 px-2">
+                        <Form className="d-flex w-100">
+                            <Form.Control
+                                type="search"
+                                placeholder="Search movies..."
+                                className="netflix-search"
+                                value={searchTerm}
+                                onChange={(e) => onSearchChange(e.target.value)}
+                            />
+                        </Form>
+                    </div>
                 )}
 
-                {/* Right Controls (User icon or login/signup buttons) */}
-                <div className="d-flex align-items-center flex-shrink-0">
+                {/* Right-side buttons */}
+                <div className="d-flex align-items-center gap-2">
                     {user ? (
-                        <Navbar.Toggle className="border-0 p-1">
-                            <i className="bi bi-person-circle fs-3 text-white" />
+                        <Navbar.Toggle className="border-0">
+                            <i className="bi bi-person-circle fs-2 text-white" />
                         </Navbar.Toggle>
                     ) : (
                         <>
@@ -62,7 +64,7 @@ export const NavigationBar = ({ user, onLoggedOut, searchTerm, onSearchChange })
                                     as={Link}
                                     to="/login"
                                     variant="danger"
-                                    className="fw-semibold me-2"
+                                    className="fw-semibold"
                                     onClick={() => setExpanded(false)}
                                 >
                                     Login
@@ -82,36 +84,30 @@ export const NavigationBar = ({ user, onLoggedOut, searchTerm, onSearchChange })
                         </>
                     )}
                 </div>
+            </div>
 
-                {/* Mobile Dropdown Menu */}
-                <Navbar.Collapse id="navbar-nav" className="mobile-menu mt-2">
-                    <Nav className="ms-auto align-items-center text-center">
-                        {user && (
-                            <>
-                                <Nav.Link as={Link} to="/" className="text-white" onClick={() => setExpanded(false)}>
-                                    Home
-                                </Nav.Link>
-                                <Nav.Link as={Link} to="/profile" className="text-white" onClick={() => setExpanded(false)}>
-                                    Profile
-                                </Nav.Link>
-                                <Nav.Link as={Link} to="/favorites" className="text-white" onClick={() => setExpanded(false)}>
-                                    Favorites
-                                </Nav.Link>
-                                <Button
-                                    variant="outline-light"
-                                    className="mt-2"
-                                    onClick={() => {
-                                        onLoggedOut();
-                                        setExpanded(false);
-                                    }}
-                                >
-                                    Logout
-                                </Button>
-                            </>
-                        )}
-                    </Nav>
-                </Navbar.Collapse>
-            </Container>
+            {/* Mobile dropdown */}
+            <Navbar.Collapse id="navbar-nav" className="mobile-menu mt-2">
+                <Nav className="ms-auto text-center">
+                    {user && (
+                        <>
+                            <Nav.Link as={Link} to="/" className="text-white" onClick={() => setExpanded(false)}>Home</Nav.Link>
+                            <Nav.Link as={Link} to="/profile" className="text-white" onClick={() => setExpanded(false)}>Profile</Nav.Link>
+                            <Nav.Link as={Link} to="/favorites" className="text-white" onClick={() => setExpanded(false)}>Favorites</Nav.Link>
+                            <Button
+                                variant="outline-light"
+                                className="mt-1"
+                                onClick={() => {
+                                    onLoggedOut();
+                                    setExpanded(false);
+                                }}
+                            >
+                                Logout
+                            </Button>
+                        </>
+                    )}
+                </Nav>
+            </Navbar.Collapse>
         </Navbar>
     );
 };
