@@ -2,11 +2,15 @@ import { useState } from "react";
 import Button from "react-bootstrap/Button";
 import Form from "react-bootstrap/Form";
 import { Link } from "react-router-dom";
+import { BsEye, BsEyeSlash } from "react-icons/bs";
+
 
 
 export const LoginView = ({ onLoggedIn }) => {
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
+  const [showPassword, setShowPassword] = useState(false);
+
 
   const handleSubmit = (event) => {
     event.preventDefault();
@@ -53,17 +57,33 @@ export const LoginView = ({ onLoggedIn }) => {
           />
         </Form.Group>
 
-        <Form.Group controlId="formPassword" className="mb-4">
+          <Form.Group controlId="formPassword" className=" mb-3 ">
           <Form.Label>Password</Form.Label>
-          <Form.Control
-            type="password"
-            value={password}
-            onChange={(e) => setPassword(e.target.value)}
-            required
-            placeholder="Enter password"
-            className="custom-dark-input py-3"
-          />
-        </Form.Group>
+        <div className="position-relative">
+      <Form.Control
+        type={showPassword ? "text" : "password"}
+        value={password}
+        onChange={(e) => setPassword(e.target.value)}
+        required
+        placeholder="Enter password"
+        className="custom-dark-input py-3 pe-5"
+      />
+      <span
+        onClick={() => setShowPassword(!showPassword)}
+        style={{
+          position: "absolute",
+          right: "15px",
+          top: "50%",
+          transform: "translateY(-50%)",
+          cursor: "pointer",
+          color: "#ccc"
+        }}
+      >
+        {showPassword ? <BsEyeSlash /> : <BsEye />}
+      </span>
+    </div>
+  </Form.Group>
+
 
         <div className="d-grid">
           <Button variant="primary" type="submit">

@@ -2,12 +2,14 @@ import React, { useState } from "react";
 import Button from "react-bootstrap/Button";
 import Form from "react-bootstrap/Form";
 import { Link, useNavigate } from "react-router-dom";
+import { BsEye, BsEyeSlash } from "react-icons/bs";
 
 export const SignupView = () => {
     const [username, setUsername] = useState("");
     const [password, setPassword] = useState("");
     const [email, setEmail] = useState("");
     const [birthday, setBirthday] = useState("");
+    const [showPassword, setShowPassword] = useState(false);
 
     const [isSubmitting, setIsSubmitting] = useState(false);
     const navigate = useNavigate();
@@ -72,16 +74,31 @@ export const SignupView = () => {
                     />
                 </Form.Group>
 
-                <Form.Group controlId="formPassword" className="px-4 mb-2">
+                <Form.Group controlId="formPassword" className="px-4 mb-1 position-relative">
                     <Form.Label>Password</Form.Label>
-                    <Form.Control
-                        type="password"
-                        value={password}
-                        onChange={(e) => setPassword(e.target.value)}
-                        required
-                        placeholder="Enter password"
-                        className="custom-dark-input py-3"
-                    />
+                    <div className="position-relative">
+                        <Form.Control
+                            type={showPassword ? "text" : "password"}
+                            value={password}
+                            onChange={(e) => setPassword(e.target.value)}
+                            required
+                            placeholder="Enter password"
+                            className="custom-dark-input py-3 pe-5"
+                        />
+                        <span
+                            onClick={() => setShowPassword(!showPassword)}
+                            style={{
+                                position: "absolute",
+                                right: "15px",
+                                top: "50%",
+                                transform: "translateY(-50%)",
+                                cursor: "pointer",
+                                color: "#ccc"
+                            }}
+                        >
+                            {showPassword ? <BsEyeSlash /> : <BsEye />}
+                        </span>
+                    </div>
                 </Form.Group>
 
                 <Form.Group controlId="formEmail" className="px-4 mb-2">
