@@ -1,7 +1,7 @@
-import React, { useState } from "react";
+import { useState } from "react";
 import Button from "react-bootstrap/Button";
 import Form from "react-bootstrap/Form";
-import { Link, useNavigate } from "react-router-dom";
+import { Link } from "react-router-dom";
 import { BsEye, BsEyeSlash } from "react-icons/bs";
 
 export const SignupView = () => {
@@ -11,58 +11,47 @@ export const SignupView = () => {
     const [birthday, setBirthday] = useState("");
     const [showPassword, setShowPassword] = useState(false);
 
-    const [isSubmitting, setIsSubmitting] = useState(false);
-    const navigate = useNavigate();
-
     const handleSubmit = (event) => {
         event.preventDefault();
-        setIsSubmitting(true);
 
         const data = {
             Username: username,
             Password: password,
             Email: email,
-            Birthday: birthday
+            Birthday: birthday,
         };
 
         fetch("https://murmuring-dusk-30240-f46e356bdd77.herokuapp.com/users", {
             method: "POST",
             body: JSON.stringify(data),
-            headers: { "Content-Type": "application/json" }
-        })
-            .then((response) => {
-                setIsSubmitting(false);
-                if (response.ok) {
-                    alert("Signup successful! You can now log in.");
-                    navigate("/login");
-                } else {
-                    return response.json().then(err => {
-                        const msg = err.errors?.[0]?.msg || "Signup failed. Please try again.";
-                        alert(msg);
-                    });
-                }
-            })
-            .catch(() => {
-                setIsSubmitting(false);
-                alert("Something went wrong. Please try again later.");
-            });
+            headers: {
+                "Content-Type": "application/json",
+            },
+        }).then((response) => {
+            if (response.ok) {
+                alert("Signup successful");
+                window.location.reload(); // reload so user can login
+            } else {
+                alert("Signup failed");
+            }
+        });
     };
 
     return (
         <div
             className="d-flex justify-content-center align-items-center"
             style={{
-                minHeight: "100vh",
+                height: "auto",
                 backgroundColor: "rgba(0, 0, 0, 0.5)",
                 borderRadius: "10px",
                 boxShadow: "0 4px 20px rgba(0, 0, 0, 0.3)",
-                padding: "10px"
+                padding: "10px",
             }}
         >
             <Form onSubmit={handleSubmit} className="text-white p-3" style={{ width: "320px" }}>
-                <h2 className="text-center mb-3">Sign up</h2>
+                <h2 className="text-center">Sign up</h2>
 
-                <Form.Group controlId="formUsername" className="px-4 mb-2">
+                <Form.Group controlId="formUsername" className="px-4 mb-1">
                     <Form.Label>Username</Form.Label>
                     <Form.Control
                         type="text"
@@ -74,20 +63,27 @@ export const SignupView = () => {
                     />
                 </Form.Group>
 
-                <Form.Group controlId="formPassword" className="px-4 mb-2">
+                <Form.Group controlId="formPassword" className="px-4 mb-1">
                     <Form.Label>Password</Form.Label>
-                    <Form.Control
-                        type="password"
-                        value={password}
-                        onChange={(e) => setPassword(e.target.value)}
-                        required
-                        placeholder="Enter password"
-                        className="custom-dark-input py-3"
-                    />
-
+                    <div className="input-group">
+                        <Form.Control
+                            type={showPassword ? "text" : "password"}
+                            value={password}
+                            onChange={(e) => setPassword(e.target.value)}
+                            required
+                            placeholder="Enter password"
+                            className="custom-dark-input py-3"
+                        />
+                        <span
+                            onClick={() => setShowPassword(!showPassword)}
+                            className="input-group-text"
+                        >
+                            {showPassword ? <BsEyeSlash /> : <BsEye />}
+                        </span>
+                    </div>
                 </Form.Group>
 
-                <Form.Group controlId="formEmail" className="px-4 mb-2">
+                <Form.Group controlId="formemail" className="px-4 mb-1">
                     <Form.Label>Email</Form.Label>
                     <Form.Control
                         type="email"
@@ -99,23 +95,23 @@ export const SignupView = () => {
                     />
                 </Form.Group>
 
-                <Form.Group controlId="formBirthday" className="px-4 mb-3">
+                <Form.Group controlId="formdate" className="px-4 mb-3">
                     <Form.Label>Birthday</Form.Label>
                     <Form.Control
                         type="date"
                         value={birthday}
                         onChange={(e) => setBirthday(e.target.value)}
                         required
+                        placeholder="D.O.B"
                         className="custom-dark-input py-3"
                     />
                 </Form.Group>
 
                 <div className="d-grid px-4">
-                    <Button variant="primary" type="submit" disabled={isSubmitting}>
-                        {isSubmitting ? "Signing up..." : "Sign up"}
+                    <Button variant="primary" type="submit">
+                        Sign up
                     </Button>
                 </div>
-
                 <div className="text-center mt-3">
                     <span className="text-white">Already have an account? </span>
                     <Link to="/login" className="text-warning fw-bold text-decoration-none">
