@@ -74,31 +74,17 @@ export const SignupView = () => {
                     />
                 </Form.Group>
 
-                <Form.Group controlId="formPassword" className="px-4 mb-1 position-relative">
+                <Form.Group controlId="formPassword" className="px-4 mb-2">
                     <Form.Label>Password</Form.Label>
-                    <div className="position-relative">
-                        <Form.Control
-                            type={showPassword ? "text" : "password"}
-                            value={password}
-                            onChange={(e) => setPassword(e.target.value)}
-                            required
-                            placeholder="Enter password"
-                            className="custom-dark-input py-3 pe-5"
-                        />
-                        <span
-                            onClick={() => setShowPassword(!showPassword)}
-                            style={{
-                                position: "absolute",
-                                right: "15px",
-                                top: "50%",
-                                transform: "translateY(-50%)",
-                                cursor: "pointer",
-                                color: "#ccc"
-                            }}
-                        >
-                            {showPassword ? <BsEyeSlash /> : <BsEye />}
-                        </span>
-                    </div>
+                    <Form.Control
+                        type="password"
+                        value={password}
+                        onChange={(e) => setPassword(e.target.value)}
+                        required
+                        placeholder="Enter password"
+                        className="custom-dark-input py-3"
+                    />
+
                 </Form.Group>
 
                 <Form.Group controlId="formEmail" className="px-4 mb-2">

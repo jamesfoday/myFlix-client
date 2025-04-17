@@ -9,8 +9,7 @@ import { BsEye, BsEyeSlash } from "react-icons/bs";
 export const LoginView = ({ onLoggedIn }) => {
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
-  const [showPassword, setShowPassword] = useState(false);
-
+  
 
   const handleSubmit = (event) => {
     event.preventDefault();
@@ -57,32 +56,32 @@ export const LoginView = ({ onLoggedIn }) => {
           />
         </Form.Group>
 
-          <Form.Group controlId="formPassword" className=" mb-3 ">
-          <Form.Label>Password</Form.Label>
-        <div className="position-relative">
-      <Form.Control
-        type={showPassword ? "text" : "password"}
-        value={password}
-        onChange={(e) => setPassword(e.target.value)}
-        required
-        placeholder="Enter password"
-        className="custom-dark-input py-3 pe-5"
-      />
-      <span
-        onClick={() => setShowPassword(!showPassword)}
-        style={{
-          position: "absolute",
-          right: "15px",
-          top: "50%",
-          transform: "translateY(-50%)",
-          cursor: "pointer",
-          color: "#ccc"
-        }}
-      >
-        {showPassword ? <BsEyeSlash /> : <BsEye />}
-      </span>
-    </div>
-  </Form.Group>
+        <Form.Group controlId="formPassword" className="px-4 mb-3 position-relative">
+  <Form.Label>Password</Form.Label>
+  <div className="position-relative">
+    <Form.Control
+      type={showPassword ? "text" : "password"}
+      value={password}
+      onChange={(e) => setPassword(e.target.value)}
+      required
+      placeholder="Enter password"
+      className="custom-dark-input py-3 pe-5"
+    />
+    <span
+      onClick={() => setShowPassword(!showPassword)}
+      style={{
+        position: "absolute",
+        right: "15px",
+        top: "50%",
+        transform: "translateY(-50%)",
+        cursor: "pointer",
+        color: "#ccc"
+      }}
+    >
+      {showPassword ? <BsEyeSlash /> : <BsEye />}
+    </span>
+  </div>
+</Form.Group>
 
 
         <div className="d-grid">
