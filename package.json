@@ -1,16 +1,23 @@
 {
   "name": "clsides",
   "version": "1.0.0",
+  "description": "A React project using Parcel, Bootstrap, and Sass",
   "scripts": {
-    "start": "parcel index.html",
-    "build": "parcel build index.html"
+    "start": "parcel src/index.html",
+    "build": "parcel build src/index.html"
   },
+  "keywords": [
+    "react",
+    "parcel",
+    "bootstrap",
+    "sass"
+  ],
   "author": "",
   "license": "ISC",
-  "description": "",
   "dependencies": {
     "bootstrap": "^5.3.3",
     "bootstrap-icons": "^1.11.3",
+    "prop-types": "^15.8.1",
     "react": "^19.0.0",
     "react-bootstrap": "^2.10.9",
     "react-dom": "^19.0.0",
@@ -19,7 +26,19 @@
     "sass": "^1.86.3"
   },
   "devDependencies": {
+<<<<<<< HEAD
+    "@parcel/transformer-sass": "2.7.0",
+    "parcel": "2.7.0",
+    "process": "^0.11.10"
+  },
+  "browserslist": [
+    "last 2 versions",
+    "not dead",
+    "not < 0.2%"
+  ]
+=======
     "@parcel/transformer-sass": "^2.14.4",
     "parcel": "^2.14.4"
   }
+>>>>>>> deploy-myflix
 }

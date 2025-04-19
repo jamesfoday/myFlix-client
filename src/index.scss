@@ -1,3 +1,6 @@
+@import './node_modules/bootstrap/scss/bootstrap';
+
+
 body,
 html,
 #root {
@@ -12,7 +15,8 @@ html,
 $primary: SeaGreen;
 $body-bg: honeydew;
 
-@import '~bootstrap/scss/bootstrap.scss';
+
+
 
 
 .logo-image {
