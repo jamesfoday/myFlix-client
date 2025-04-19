@@ -21,10 +21,12 @@
     "react": "^19.0.0",
     "react-bootstrap": "^2.10.9",
     "react-dom": "^19.0.0",
+    "react-icons": "^5.5.0",
     "react-router-dom": "^6.14.2",
     "sass": "^1.86.3"
   },
   "devDependencies": {
+<<<<<<< HEAD
     "@parcel/transformer-sass": "2.7.0",
     "parcel": "2.7.0",
     "process": "^0.11.10"
@@ -34,4 +36,9 @@
     "not dead",
     "not < 0.2%"
   ]
+=======
+    "@parcel/transformer-sass": "^2.14.4",
+    "parcel": "^2.14.4"
+  }
+>>>>>>> deploy-myflix
 }

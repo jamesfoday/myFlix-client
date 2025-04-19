@@ -2,11 +2,12 @@ import { useState } from "react";
 import Button from "react-bootstrap/Button";
 import Form from "react-bootstrap/Form";
 import { Link } from "react-router-dom";
-
+import { BsEye, BsEyeSlash } from "react-icons/bs";
 
 export const LoginView = ({ onLoggedIn }) => {
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
+  const [showPassword, setShowPassword] = useState(false);
 
   const handleSubmit = (event) => {
     event.preventDefault();
@@ -32,37 +33,45 @@ export const LoginView = ({ onLoggedIn }) => {
   return (
     <div
       className="d-flex justify-content-center align-items-center "
-      style={{ height: "auto", backgroundColor: "rgba(0, 0, 0, 0.5)", borderRadius: "10px",  boxShadow: "0 4px 20px rgba(0, 0, 0, 0.3)", padding: "10px"  }}
+      style={{ height: "auto", backgroundColor: "rgba(0, 0, 0, 0.5)", borderRadius: "10px", boxShadow: "0 4px 20px rgba(0, 0, 0, 0.3)", padding: "10px" }}
     >
       <Form
         onSubmit={handleSubmit}
-        className="  text-white p-5 "
+        className=" text-white p-5 "
         style={{ width: "320px" }}
       >
         <h2 className="mb-4 text-center">Login</h2>
 
-        <Form.Group controlId="formUsername" className="mb-3  ">
-          <Form.Label >Username</Form.Label>
-          <Form.Control 
+        <Form.Group controlId="formUsername" className="mb-3 ">
+          <Form.Label>Username</Form.Label>
+          <Form.Control
             type="text"
             value={username}
             onChange={(e) => setUsername(e.target.value)}
             required
             placeholder="Enter username"
-              className="custom-dark-input py-3"
+            className="custom-dark-input py-3"
           />
         </Form.Group>
 
         <Form.Group controlId="formPassword" className="mb-4">
           <Form.Label>Password</Form.Label>
-          <Form.Control
-            type="password"
-            value={password}
-            onChange={(e) => setPassword(e.target.value)}
-            required
-            placeholder="Enter password"
-            className="custom-dark-input py-3"
-          />
+          <div className="input-group">
+            <Form.Control
+              type={showPassword ? "text" : "password"}
+              value={password}
+              onChange={(e) => setPassword(e.target.value)}
+              required
+              placeholder="Enter password"
+              className="custom-dark-input py-3"
+            />
+            <span
+              onClick={() => setShowPassword(!showPassword)}
+              className="input-group-text"
+            >
+              {showPassword ? <BsEyeSlash /> : <BsEye />}
+            </span>
+          </div>
         </Form.Group>
 
         <div className="d-grid">
@@ -71,63 +80,12 @@ export const LoginView = ({ onLoggedIn }) => {
           </Button>
         </div>
         <div className="text-center mt-3">
-         <span className="text-white">New to myFlix? </span>
-         <Link to="/signup" className="text-warning fw-bold text-decoration-none">
-          Sign up now
+          <span className="text-white">New to myFlix? </span>
+          <Link to="/signup" className="text-warning fw-bold text-decoration-none">
+            Sign up now
           </Link>
         </div>
       </Form>
     </div>
   );
 };
-
-
-// // 🎨 Styles
-// const styles = {
-//     // background: {
-//     //     height: "100vh",
-//     //     width: "100%",
-//     //     // backgroundImage: `url("https://wallpaperaccess.com/full/317501.jpg")`, 
-//     //     backgroundSize: "cover",
-//     //     backgroundPosition: "center",
-//     //     display: "flex",
-//     //     alignItems: "center",
-//     //     justifyContent: "center"
-//     // },
-    
-//     // 
-//     overlay: {
-//         backgroundColor: "rgba(0, 0, 0, 0.5)",
-//         padding: "60px",
-//         borderRadius: "10px",
-//         boxShadow: "0 4px 20px rgba(0, 0, 0, 0.3)"
-//     },
-//     form: {
-//         display: "flex",
-//         flexDirection: "column",
-//         alignItems: "center",
-//         gap: "15px"
-//     },
-//     title: {
-//         color: "#fff",
-//         fontSize: "24px",
-//         marginBottom: "10px"
-//     },
-//     input: {
-//         width: "220px",
-//         padding: "10px",
-//         borderRadius: "6px",
-//         border: "none",
-//         outline: "none"
-//     },
-//     button: {
-//         padding: "10px 20px",
-//         borderRadius: "6px",
-//         border: "none",
-//         backgroundColor: "#00b894",
-//         color: "#fff",
-//         fontWeight: "bold",
-//         cursor: "pointer"
-//     }
-// };
-// // 

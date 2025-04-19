@@ -1,16 +1,26 @@
 import React from "react";
 import PropTypes from "prop-types";
 import { Card, Button, OverlayTrigger, Tooltip } from "react-bootstrap";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom"; // Corrected duplicate import
 
 export const MovieCard = ({ movie, onToggleFavorite, isFavorite }) => {
+    const navigate = useNavigate(); // Added to enable navigation functionality
+
     const handleFavoriteClick = (e) => {
         e.preventDefault(); // Prevent card/link click
         onToggleFavorite(movie._id);
     };
 
+    const handleWatchClick = (e) => {
+        e.preventDefault(); // Prevent card/link click
+        navigate(`/movies/${movie._id}`); // Navigate to the movie's detail page
+    };
+
     return (
-        <Card className="shadow-sm border-0 h-100 w-100 position-relative" style={{ cursor: "pointer" }}>
+        <Card
+            className="shadow-sm border-0 h-100 w-100 position-relative movie-card"
+            style={{ cursor: "pointer" }}
+        >
             <Link to={`/movies/${movie._id}`} style={{ textDecoration: "none" }}>
                 <Card.Img
                     variant="top"
@@ -21,11 +31,25 @@ export const MovieCard = ({ movie, onToggleFavorite, isFavorite }) => {
                 />
             </Link>
 
+            {/* Movie Info */}
             <Card.Body className="d-flex flex-column p-3">
                 <Card.Title className="fw-bold text-dark">{movie.Title}</Card.Title>
                 <Card.Text className="text-muted mb-2">
                     Directed by: {movie.Director?.Name || "Unknown"}
                 </Card.Text>
+
+                {/* Hover Effects */}
+                <div className="movie-card-hover-info">
+                    <Card.Text className="movie-description">{movie.Description}</Card.Text>
+
+                    <Button
+                        variant="outline-light"
+                        className="mt-2"
+                        onClick={handleWatchClick}
+                    >
+                        Watch movie
+                    </Button>
+                </div>
 
                 {/* Heart (Favorite) Button */}
                 <OverlayTrigger
@@ -60,6 +84,9 @@ MovieCard.propTypes = {
             Name: PropTypes.string,
         }),
         _id: PropTypes.string.isRequired,
+        Description: PropTypes.string.isRequired, // Movie Description
+        Rating: PropTypes.number, // Movie Rating
+        TrailerLink: PropTypes.string, // Trailer link (YouTube)
     }).isRequired,
     onToggleFavorite: PropTypes.func.isRequired,
     isFavorite: PropTypes.bool.isRequired,
