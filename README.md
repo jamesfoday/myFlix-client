@@ -3,7 +3,7 @@
 The **myFlix** app is a client-side web application built using **React**, allowing users to browse, search, and save their favorite movies. Users can create an account, update profile info, and manage their list of favorite films.
 
 ## Live Demo
- [myFlix Live App on Netlify](https://myflix1712.netlify.app)
+ [myFlix Live App on Netlify](https://myflix1721.netlify.app)
 
 ##  Project Features
 
