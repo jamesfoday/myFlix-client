@@ -1,5 +1,147 @@
-$color: steelblue;
+@import './node_modules/bootstrap/scss/bootstrap';
 
-.my-flix {
-    color: $color;
+
+body,
+html,
+#root {
+    margin: 0;
+    padding: 0;
+    width: 100%;
+    height: 100%;
+    overflow-x: hidden;
+
+}
+
+$primary: SeaGreen;
+$body-bg: honeydew;
+
+
+
+
+
+.logo-image {
+    width: 120px;
+    height: 40px;
+    background-image: url('../public/assets/myfllixlogo3.png');
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: center;
+    display: inline-block;
+}
+
+.bodylog {
+    background-image: url('../public/assets/chat.png');
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    min-height: 100vh;
+    width: 100%;
+    margin: 0;
+    padding: 0;
+}
+
+.form-control.custom-dark-input {
+    background-color: rgba(12, 12, 12, 0.4) !important;
+    color: #fff !important;
+    border: 0.5px solid #ffffff !important;
+    backdrop-filter: blur(4px);
+    box-shadow: none;
+    outline: none;
+}
+
+.form-control.custom-dark-input::placeholder {
+    color: rgba(255, 255, 255, 0.6);
+}
+
+//
+
+.netflix-search {
+    border-radius: 30px;
+    background-color: #111;
+    color: white;
+    padding: 10px 15px;
+    border: none;
+}
+
+.logo-image {
+    background-image: url("./../public/assets/myfllixlogo3.png");
+    width: 100px;
+    height: 40px;
+    background-size: contain;
+    background-repeat: no-repeat;
+}
+
+.custom-dark-input {
+    background-color: #181818;
+    border: 1px solid #333;
+    color: #fff;
+}
+
+.custom-dark-input::placeholder {
+    color: #aaa;
+}
+
+/* MovieCard styles */
+.movie-card {
+    position: relative;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.movie-card:hover {
+    transform: scale(1.05);
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
+}
+
+.movie-card-hover-info {
+    opacity: 0;
+    transition: opacity 0.3s ease;
+    position: absolute;
+    bottom: 10px;
+    left: 10px;
+    right: 10px;
+    background-color: rgba(0, 0, 0, 0.7);
+    padding: 10px;
+    border-radius: 5px;
+}
+
+.movie-card:hover .movie-card-hover-info {
+    opacity: 1;
+}
+
+.movie-description {
+    font-size: 0.9rem;
+    color: #fff;
+    margin-bottom: 10px;
+}
+
+.movie-rating {
+    font-size: 1rem;
+    color: #ffd700;
+    margin-bottom: 10px;
+}
+
+.watch-trailer-btn {
+    background-color: #ff0044;
+    color: #fff;
+    border-radius: 5px;
+    text-transform: uppercase;
+    font-weight: bold;
+    padding: 6px 10px;
+}
+
+.watch-trailer-btn:hover {
+    background-color: #d40037;
+}
+
+.bi-heart,
+.bi-heart-fill {
+    font-size: 1.5rem;
+}
+
+.text-green {
+    color: #28a745;
+}
+
+.text-danger {
+    color: #ff0000;
 }
